@@ -1,9 +1,17 @@
 import UserService from './user';
-import CompanyService from './company';
 import OrderService from './order';
+import CompanyService from './company';
+import CategoryService from './category';
+import CheckoutService from './checkout';
+import InventoryService from './inventory';
+import BaseService from './base';
 
 export {
 	UserService,
+	OrderService,
 	CompanyService,
-	OrderService
+	CheckoutService,
+	CategoryService,
+	InventoryService,
+	BaseService
 };

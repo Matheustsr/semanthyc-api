@@ -1,11 +1,17 @@
-import SessionController from './session';
 import UserController from './user';
-import CompanyController from './company';
 import OrderController from './order';
+import CompanyController from './company';
+import SessionController from './session';
+import CheckoutController from './checkout';
+import CategoryController from './category';
+import InventoryController from './inventory';
 
 export {
-	SessionController,
 	UserController,
+	OrderController,
 	CompanyController,
-	OrderController
+	SessionController,
+	CheckoutController,
+	CategoryController,
+	InventoryController
 };

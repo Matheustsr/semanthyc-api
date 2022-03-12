@@ -1,7 +1,6 @@
+import BaseRoutes from './base';
 import { CompanySchema } from '@schemas';
 import { CompanyController } from '@controllers';
-import { AuthMiddleware } from '@middlewares';
-import BaseRoutes from './base';
 
 export default class CompanyRoutes extends BaseRoutes {
 	constructor() {
@@ -11,10 +10,10 @@ export default class CompanyRoutes extends BaseRoutes {
 	}
 
 	setup() {
-		this.router.post('/', AuthMiddleware.isAuthorized, this.SchemaValidator.validate(CompanySchema.store), this.companyController.store);
-		this.router.get('/', AuthMiddleware.isAuthorized, this.companyController.list);
-		this.router.put('/:id', AuthMiddleware.isAuthorized, this.SchemaValidator.validate(CompanySchema.find), this.companyController.update);
-		this.router.delete('/:id', AuthMiddleware.isAuthorized, this.SchemaValidator.validate(CompanySchema.find), this.companyController.destroy);
+		this.router.get('/', this.companyController.list);
+		this.router.post('/', this.SchemaValidator.validate(CompanySchema.store), this.companyController.store);
+		this.router.put('/:id', this.SchemaValidator.validate(CompanySchema.find), this.companyController.update);
+		this.router.delete('/:id', this.SchemaValidator.validate(CompanySchema.find), this.companyController.destroy);
 
 		return this.router;
 	}

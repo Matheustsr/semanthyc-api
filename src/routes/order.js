@@ -1,7 +1,6 @@
+import BaseRoutes from './base';
 import { OrderSchema } from '@schemas';
 import { OrderController } from '@controllers';
-import { AuthMiddleware } from '@middlewares';
-import BaseRoutes from './base';
 
 export default class OrderRoutes extends BaseRoutes {
 	constructor() {
@@ -11,9 +10,10 @@ export default class OrderRoutes extends BaseRoutes {
 	}
 
 	setup() {
-		this.router.post('/', AuthMiddleware.isAuthorized, this.SchemaValidator.validate(OrderSchema.store), this.orderController.store);
-		this.router.get('/', AuthMiddleware.isAuthorized, this.orderController.list);
-		this.router.delete('/:id', AuthMiddleware.isAuthorized, this.SchemaValidator.validate(OrderSchema.find), this.orderController.destroy);
+		this.router.get('/', this.orderController.list);
+		this.router.put('/:id', this.SchemaValidator.validate(OrderSchema.update), this.orderController.update);
+		this.router.delete('/:id', this.SchemaValidator.validate(OrderSchema.find), this.orderController.destroy);
+		this.router.post('/:company_id', this.SchemaValidator.validate(OrderSchema.store), this.orderController.store);
 
 		return this.router;
 	}

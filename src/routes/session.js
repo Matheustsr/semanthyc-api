@@ -1,6 +1,6 @@
+import BaseRoutes from './base';
 import { SessionSchema } from '@schemas';
 import { SessionController } from '@controllers';
-import BaseRoutes from './base';
 
 export default class SessionRoutes extends BaseRoutes {
 	constructor() {

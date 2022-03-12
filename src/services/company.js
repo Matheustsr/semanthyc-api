@@ -1,15 +1,10 @@
 import { Company } from '@models';
 import { ExceptionUtils } from '@utils';
+import BaseService from './base';
+
 import { omit } from 'lodash';
 
-export default class CompanyService {
-	async findCompany(companyId) {
-		return await Company.findOne({
-            where: { id: companyId },
-			attributes: ['id', 'name', 'address', 'creator_id']
-        });
-	}
-
+export default class CompanyService extends BaseService {
 	listAllCompanies() {
 		return Company.findAll();
 	}
@@ -20,14 +15,14 @@ export default class CompanyService {
 
 
 	async store(companyData) {
-		const companyExists = await Company.findOne({ where: { name: companyData.name }, logging: true });
+		const companyExists = await Company.findOne({ where: { name: companyData.name }});
 		companyData.creator_id = companyData.user_id
 
         if (companyExists) {
 			throw new ExceptionUtils('COMPANY_ALREADY_EXISTS');
         }
 
-        await Company.create(companyData);
+        return await Company.create(companyData);
 	}
 
 	async edit(companyData) {
@@ -36,13 +31,11 @@ export default class CompanyService {
 
         if (!companyExists) {
 			throw new ExceptionUtils('INVALID_COMPANY');
-        }
-
-		if (companyData.user_id !== companyExists.creator_id && !companyData.is_root) {
+        } else if (companyData.user_id !== companyExists.creator_id && !companyData.is_root) {
 			throw new ExceptionUtils('UNAUTHORIZED_ACTION');
 		}
 
-        await Company.update(changes, {
+        return await Company.update(changes, {
 			where: {
 				id: companyData.id
 			}

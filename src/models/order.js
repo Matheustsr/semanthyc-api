@@ -3,7 +3,6 @@ import BaseModel from './base';
 export default class Order extends BaseModel {
 	static load(sequelize, DataTypes) {
 		return super.init({
-			status: DataTypes.STRING,
 			items: DataTypes.JSON,
 			sale_date: DataTypes.STRING
 		}, {

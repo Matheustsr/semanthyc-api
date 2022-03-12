@@ -4,8 +4,9 @@ export default class Inventory extends BaseModel {
 	static load(sequelize, DataTypes) {
 		return super.init({
 			name: DataTypes.STRING,
-			amount_available: DataTypes.INTEGER,
-			units_sold: DataTypes.INTEGER
+			amout_available: DataTypes.INTEGER,
+			units_sold: DataTypes.INTEGER,
+			value: DataTypes.INTEGER
 		}, {
 			timestamps: true,
 			paranoid: true,

@@ -1,4 +1,4 @@
-import { OrderService } from '@services';
+import { OrderService, CheckoutService } from '@services';
 import { PermissionUtils } from '@utils';
 import BaseController from './base';
 
@@ -7,15 +7,17 @@ export default class OrderController extends BaseController {
 		super();
 
 		this.orderService = new OrderService();
+		this.checkoutService = new CheckoutService();
 
-		this.bindActions(['store', 'list', 'destroy']);
+		this.bindActions(['store', 'list', 'destroy', 'update']);
 	}
 
 	async store(req, res) {
 		try {
-			const order = await this.orderService.store({
+			const order = await this.checkoutService.store({
 				...req.data,
-				...req.auth
+				...req.auth,
+				store_id: req.params.company_id
 			});
 
 			this.successHandler(order, res);
@@ -24,35 +26,20 @@ export default class OrderController extends BaseController {
 		}
 	}
 
-	// async updateManager(req, res) {
-	// 	await PermissionUtils.verifyRootPermission(req.auth);
+	async update(req, res) {
+		await PermissionUtils.verifyRootPermission(req.auth);
 
-	// 	try {
-	// 		const order = await this.orderService.updateManager({
-	// 			...req.params,
-	// 			...req.data
-	// 		});
+		try {
+			const order = await this.orderService.updateOrder({
+				...req.params,
+				...req.data
+			});
 
-	// 		this.successHandler(order, res);
-	// 	} catch (error) {
-	// 		this.errorHandler(error, req, res);
-	// 	}
-	// }
-
-	// async updateCompany(req, res) {
-	// 	await PermissionUtils.verifyRootPermission(req.auth);
-
-	// 	try {
-	// 		const order = await this.orderService.updateCompany({
-	// 			...req.params
-	// 		});
-
-	// 		this.successHandler(order, res);
-	// 	} catch (error) {
-	// 		this.errorHandler(error, req, res);
-	// 	}
-
-	// }
+			this.successHandler(order, res);
+		} catch (error) {
+			this.errorHandler(error, req, res);
+		}
+	}
 
 	async destroy(req, res) {
 		try {

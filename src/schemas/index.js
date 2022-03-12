@@ -1,11 +1,17 @@
 import UserSchema from './user';
+import OrderSchema from './order';
 import CompanySchema from './company';
 import SessionSchema from './sessions';
-import OrderSchema from './order';
+import CategorySchema from './category';
+import CheckoutSchema from './checkout';
+import InventorySchema from './inventory';
 
 export {
 	UserSchema,
+	OrderSchema,
 	CompanySchema,
 	SessionSchema,
-	OrderSchema
+	CheckoutSchema,
+	CategorySchema,
+	InventorySchema
 };

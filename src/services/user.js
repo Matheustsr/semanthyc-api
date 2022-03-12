@@ -1,20 +1,9 @@
 import { User } from '@models';
-import { ExceptionUtils } from '@utils';
 import { omit, pick } from 'lodash';
+import { ExceptionUtils } from '@utils';
+import BaseService from './base';
 
-export default class UserService {
-	async findUser(userId) {
-		return await User.findOne({
-            where: { id: userId }
-        });
-	}
-
-	// async findCompany(CompanyId) {
-	// 	return await Company.findOne({
-    //         where: { id: CompanyId }
-    //     });
-	// }
-
+export default class UserService extends BaseService {
 	async store(userData) {
 		const userExists = await User.findOne({
             where: { email: userData.email },
@@ -24,7 +13,7 @@ export default class UserService {
 			throw new ExceptionUtils('USER_ALREADY_EXISTS');
         }
 
-        await User.create(userData);
+        return await User.create(userData);
 	}
 
 	async destroy(userData) {
@@ -32,9 +21,7 @@ export default class UserService {
 
 		if (userData.company_id !== userInfo.company_id) {
 			throw new ExceptionUtils('UNAUTHORIZED_ACTION');
-		}
-
-        if (!userInfo) {
+		} else if (!userInfo) {
 			throw new ExceptionUtils('INVALID_USER');
         }
 
@@ -52,7 +39,7 @@ export default class UserService {
 	async updateUser(userChanges) {
 		const changes = omit(userChanges, ['balance', 'user_type']);
 
-		await User.update(changes, {
+		return await User.update(changes, {
 			where: {
 				id: userChanges.user_id
 			}
@@ -67,7 +54,7 @@ export default class UserService {
 			throw new ExceptionUtils('INVALID_USER');
         }
 
-        await User.update({
+        return await User.update({
 			user_type: data.user_role
 		}, {
 			where: {

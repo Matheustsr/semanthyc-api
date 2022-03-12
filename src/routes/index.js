@@ -1,11 +1,17 @@
-import SessionRoutes from './session';
 import UserRoutes from './user';
-import CompanyRoutes from './company';
 import OrderRoutes from './order';
+import CompanyRoutes from './company';
+import SessionRoutes from './session';
+import CategoryRoutes from './category';
+import CheckoutRoutes from './checkout';
+import InventoryRoutes from './inventory';
 
 export {
-	SessionRoutes,
 	UserRoutes,
+	OrderRoutes,
 	CompanyRoutes,
-	OrderRoutes
+	SessionRoutes,
+	CheckoutRoutes,
+	CategoryRoutes,
+	InventoryRoutes
 };

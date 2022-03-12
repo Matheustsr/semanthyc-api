@@ -1,5 +1,5 @@
-import { UserService } from '@services';
 import { PermissionUtils } from '@utils';
+import { UserService } from '@services';
 import BaseController from './base';
 
 export default class UserController extends BaseController {
