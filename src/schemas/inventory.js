@@ -25,11 +25,18 @@ const schema = {
 		params: yup.object({
 			id: yup.number().required()
 		}).noUnknown()
+	},
+	reportByDate: {
+		body: yup.object({
+			start_date: yup.string().min(1).transform(sanitizeValue),
+			end_date: yup.string().min(1).transform(sanitizeValue)
+		}).noUnknown()
 	}
 };
 
 export default {
 	store: schema.store,
 	update: schema.update,
-	find: schema.find
+	find: schema.find,
+	reportByDate: schema.reportByDate
 };

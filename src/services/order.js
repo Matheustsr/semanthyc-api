@@ -39,4 +39,21 @@ export default class OrderService extends BaseService {
 		await Order.update(data, { where: { id: data.id } });
 	}
 
+	async findOrdersByUser(user) {
+		const userExists = await this.findUser(user.id)
+
+		if (!userExists) {
+			throw new ExceptionUtils('USER_NOT_FOUND');
+        }
+
+		return Order.findAll({ where: { user_id: user.id } });
+	}
+
+	async findOrdersByPeriod(filter) {
+		return Order.findAll({
+			where: {
+				...filter
+			}
+		});
+	}
 }

@@ -1,6 +1,7 @@
 import { InventoryService } from '@services';
 import { PermissionUtils } from '@utils';
 import BaseController from './base';
+import { Op } from 'sequelize';
 
 export default class InventoryController extends BaseController {
 	constructor() {
@@ -8,7 +9,7 @@ export default class InventoryController extends BaseController {
 
 		this.inventoryService = new InventoryService();
 
-		this.bindActions(['store', 'list', 'update', 'destroy']);
+		this.bindActions(['store', 'list', 'update', 'destroy', 'reportTopSelling']);
 	}
 
 	async store(req, res) {
@@ -70,6 +71,32 @@ export default class InventoryController extends BaseController {
 				...req.data,
 				...req.auth
 			});
+
+			this.successHandler(inventory, res);
+		} catch (error) {
+			this.errorHandler(error, req, res);
+		}
+	}
+
+	async reportTopSelling(req, res) {
+		try {
+			await PermissionUtils.verifyRootPermission(req.auth);
+
+			const filter = {};
+
+			if (req.data.start_date) {
+				filter.created_at = {
+					[Op.gte]: req.data.start_date
+				}
+			}
+
+			if (req.data.end_date) {
+				filter.created_at = {
+					[Op.lte]: req.data.end_date
+				}
+			}
+
+			const inventory = await this.inventoryService.findTopSellingProducts(filter);
 
 			this.successHandler(inventory, res);
 		} catch (error) {

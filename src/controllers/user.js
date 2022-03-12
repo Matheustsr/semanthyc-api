@@ -1,6 +1,7 @@
 import { PermissionUtils } from '@utils';
 import { UserService } from '@services';
 import BaseController from './base';
+import { Op } from 'sequelize';
 
 export default class UserController extends BaseController {
 	constructor() {
@@ -8,7 +9,7 @@ export default class UserController extends BaseController {
 
 		this.userService = new UserService();
 
-		this.bindActions(['store', 'listUsers', 'update', 'updateRole']);
+		this.bindActions(['store', 'listUsers', 'update', 'updateRole', 'reportByGreaterExpense']);
 	}
 
 	async store(req, res) {
@@ -68,6 +69,32 @@ export default class UserController extends BaseController {
 				...req.params,
 				...req.data
 			});
+
+			this.successHandler(user, res);
+		} catch (error) {
+			this.errorHandler(error, req, res);
+		}
+	}
+
+	async reportByGreaterExpense(req, res) {
+		try {
+			await PermissionUtils.verifyRootPermission(req.auth);
+
+			const filter = {};
+
+			if (req.data.start_date) {
+				filter.sale_date = {
+					[Op.gte]: req.data.start_date
+				}
+			}
+
+			if (req.data.end_date) {
+				filter.sale_date = {
+					[Op.lte]: req.data.end_date
+				}
+			}
+
+			const user = await this.userService.findUsersByGreaterExpense(filter);
 
 			this.successHandler(user, res);
 		} catch (error) {

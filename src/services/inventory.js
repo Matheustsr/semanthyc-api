@@ -52,4 +52,15 @@ export default class InventoryService extends BaseService {
 
         await Inventory.destroy({ where: { id: inventoryData.id } });
 	}
+
+	async findTopSellingProducts(filter) {
+		return Inventory.findAll({
+			where: {
+				...filter
+			},
+			raw: true,
+			attributes: ['id', 'name', 'units_sold'],
+			order: [['units_sold', 'DESC']]
+		});
+	}
 }

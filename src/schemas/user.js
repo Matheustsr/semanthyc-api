@@ -40,6 +40,12 @@ const schema = {
 			user_type: yup.string().transform(sanitizeValue).max(255)
 				.oneOf(['CUSTOMER', 'STORE_MANAGER', 'APP_OWNER']).required()
 		})
+	},
+	reportByDate: {
+		body: yup.object({
+			start_date: yup.string().min(1).transform(sanitizeValue),
+			end_date: yup.string().min(1).transform(sanitizeValue)
+		}).noUnknown()
 	}
 };
 
@@ -47,5 +53,6 @@ export default {
 	store: schema.store,
 	find: schema.find,
 	update: schema.update,
-	updateRole: schema.updateRole
+	updateRole: schema.updateRole,
+	reportByDate: schema.reportByDate
 };

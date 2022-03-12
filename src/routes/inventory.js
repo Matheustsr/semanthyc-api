@@ -14,6 +14,7 @@ export default class InventoryRoutes extends BaseRoutes {
 		this.router.get('/', this.inventoryController.list);
 		this.router.put('/:id', this.SchemaValidator.validate(InventorySchema.update), this.inventoryController.update);
 		this.router.delete('/:id', this.SchemaValidator.validate(InventorySchema.find), this.inventoryController.destroy);
+		this.router.get('/report', this.SchemaValidator.validate(InventorySchema.reportByDate), this.inventoryController.reportTopSelling);
 
 		return this.router;
 	}

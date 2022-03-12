@@ -15,6 +15,7 @@ export default class UserRoutes extends BaseRoutes {
 		this.router.put('/:user_id', this.SchemaValidator.validate(UserSchema.update), this.userController.update);
 		this.router.delete('/:user_id', this.SchemaValidator.validate(UserSchema.find), this.userController.destroy);
 		this.router.put('/role/:user_id', this.SchemaValidator.validate(UserSchema.updateRole), this.userController.updateRole);
+		this.router.get('/report', this.SchemaValidator.validate(UserSchema.reportByDate), this.userController.reportByGreaterExpense);
 
 		return this.router;
 	}

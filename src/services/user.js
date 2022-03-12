@@ -1,7 +1,8 @@
-import { User } from '@models';
+import { User, Order } from '@models';
 import { omit, pick } from 'lodash';
 import { ExceptionUtils } from '@utils';
 import BaseService from './base';
+import { Sequelize } from 'sequelize';
 
 export default class UserService extends BaseService {
 	async store(userData) {
@@ -60,6 +61,23 @@ export default class UserService extends BaseService {
 			where: {
 				id: data.user_id
 			}
+		});
+	}
+
+	async findUsersByGreaterExpense(filter) {
+		return Order.findAll({
+			where: {
+				...filter
+			},
+			raw: true,
+			attributes: [
+				'user_id',
+				[Sequelize.fn('COUNT', Sequelize.col('user_id')), 'Compras realizadas']
+			],
+			order: [
+				['user_id', 'DESC']
+			],
+			group: ['user_id']
 		});
 	}
 }
