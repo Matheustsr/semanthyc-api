@@ -5,6 +5,7 @@ import SessionRoutes from './session';
 import CategoryRoutes from './category';
 import CheckoutRoutes from './checkout';
 import InventoryRoutes from './inventory';
+import UtilitiesRoutes from './utilities';
 
 export {
 	UserRoutes,
@@ -13,5 +14,6 @@ export {
 	SessionRoutes,
 	CheckoutRoutes,
 	CategoryRoutes,
-	InventoryRoutes
+	InventoryRoutes,
+	UtilitiesRoutes
 };

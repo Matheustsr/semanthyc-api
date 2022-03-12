@@ -40,7 +40,7 @@ export default class UserService extends BaseService {
 	async updateUser(userChanges) {
 		const changes = omit(userChanges, ['balance', 'user_type']);
 
-		return await User.update(changes, {
+		await User.update(changes, {
 			where: {
 				id: userChanges.user_id
 			}
@@ -55,7 +55,7 @@ export default class UserService extends BaseService {
 			throw new ExceptionUtils('INVALID_USER');
         }
 
-        return await User.update({
+        await User.update({
 			user_type: data.user_role
 		}, {
 			where: {

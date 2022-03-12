@@ -35,7 +35,7 @@ export default class CompanyService extends BaseService {
 			throw new ExceptionUtils('UNAUTHORIZED_ACTION');
 		}
 
-        return await Company.update(changes, {
+        await Company.update(changes, {
 			where: {
 				id: companyData.id
 			}

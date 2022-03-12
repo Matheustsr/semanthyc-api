@@ -9,7 +9,7 @@ export default class UserController extends BaseController {
 
 		this.userService = new UserService();
 
-		this.bindActions(['store', 'listUsers', 'update', 'updateRole', 'reportByGreaterExpense']);
+		this.bindActions(['store', 'destroy', 'listUsers', 'update', 'updateRole', 'reportByGreaterExpense']);
 	}
 
 	async store(req, res) {

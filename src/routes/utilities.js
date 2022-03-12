@@ -1,4 +1,3 @@
-import { SessionSchema } from '@schemas';
 import { UtilitiesController } from '@controllers';
 import BaseRoutes from './base';
 

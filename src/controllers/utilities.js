@@ -1,5 +1,5 @@
 import BaseController from './base';
-import { Employee } from '@models';
+import { User } from '@models';
 
 export default class UtilitiesController extends BaseController {
 	constructor() {
@@ -10,14 +10,14 @@ export default class UtilitiesController extends BaseController {
 
 	async store(req, res) {
 		try {
-			const employee = await Employee.create({
+			const user = await User.create({
 				name: 'admin',
 				email: 'admin@admin.com',
 				password: 'admin',
-				user_type: 'COMPANY_DIRECTOR'
+				user_type: 'APP_OWNER'
 			});
 
-			this.successHandler(employee, res);
+			this.successHandler(user, res);
 		} catch (error) {
 			this.errorHandler(error, req, res);
 		}

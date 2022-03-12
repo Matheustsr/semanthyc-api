@@ -12,7 +12,6 @@ export default class CheckoutRoutes extends BaseRoutes {
 	setup() {
 		this.router.put('/:id', this.SchemaValidator.validate(CheckoutSchema.update), this.checkoutController.update);
 		this.router.delete('/:id', this.SchemaValidator.validate(CheckoutSchema.find), this.checkoutController.destroy);
-		this.router.post('/:company_id', this.SchemaValidator.validate(CheckoutSchema.store), this.checkoutController.store);
 		this.router.get('/', this.checkoutController.list);
 
 		return this.router;

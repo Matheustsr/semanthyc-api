@@ -1,9 +1,9 @@
 {
-  "name": "boilerplate-api",
+  "name": "semanthyc-api",
   "version": "v1.0.2",
   "main": "index.js",
-  "repository": "git@github.com:amigoapp/boilerplate-api.git",
-  "author": "Augusto Ferreira <augusto.ferreira@amigoapp.com.br>",
+  "repository": "",
+  "author": "Matheus Vieira <matheustsr@outlook.com>",
   "license": "MIT",
   "engines": {
     "node": ">= 16 <= 16.14.0",
@@ -51,7 +51,9 @@
     "babel-plugin-module-resolver": "^4.1.0",
     "copy": "^0.3.2",
     "eslint": "^8.8.0",
-    "semver": "^7.3.5"
+    "jest": "^27.5.1",
+    "semver": "^7.3.5",
+    "supertest": "^6.2.2"
   },
   "resolutions": {
     "graceful-fs": "4.x.x"

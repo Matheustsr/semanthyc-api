@@ -8,17 +8,7 @@ export default class CheckoutController extends BaseController {
 
 		this.checkoutService = new CheckoutService();
 
-		this.bindActions(['store', 'list', 'update', 'destroy']);
-	}
-
-	async store(req, res) {
-		try {
-			const checkout = await this.checkoutService.store({ ...req.auth, ...req.data });
-
-			this.successHandler(checkout, res);
-		} catch (error) {
-			this.errorHandler(error, req, res);
-		}
+		this.bindActions(['list', 'update', 'destroy']);
 	}
 
 	async list(req, res) {

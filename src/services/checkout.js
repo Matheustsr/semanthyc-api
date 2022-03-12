@@ -19,7 +19,7 @@ export default class CheckoutService extends BaseService {
 				if (!inventoryItem) {
 					throw new ExceptionUtils(`${cartItem.id}_NOT_FOUND`);
 				} else if (toInteger(checkoutData.store_id) !== inventoryItem.company_id) {
-					throw new ExceptionUtils(`${cartItem.id}_ITEM_NOT_BELONG_TO_STORE`);
+					throw new ExceptionUtils(`ITEM_${cartItem.id}_NOT_BELONG_TO_THIS_STORE`);
 				} else if (inventoryItem.amout_available <= 0){
 					throw new ExceptionUtils(`${cartItem.id}_IS_OUT_OF_STOCK`);
 				}

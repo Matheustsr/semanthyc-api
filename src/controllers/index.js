@@ -5,6 +5,7 @@ import SessionController from './session';
 import CheckoutController from './checkout';
 import CategoryController from './category';
 import InventoryController from './inventory';
+import UtilitiesController from './utilities';
 
 export {
 	UserController,
@@ -13,5 +14,6 @@ export {
 	SessionController,
 	CheckoutController,
 	CategoryController,
-	InventoryController
+	InventoryController,
+	UtilitiesController
 };

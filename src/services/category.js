@@ -35,7 +35,7 @@ export default class CategoryService extends BaseService {
 			throw new ExceptionUtils('INVALID_COMPANY');
         }
 
-        return await Category.update(categoryData, {
+        await Category.update(categoryData, {
 			where: {
 				id: categoryData.id
 			}
