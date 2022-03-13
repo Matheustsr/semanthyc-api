@@ -7,10 +7,14 @@ import BaseService from './base';
 export default class InventoryService extends BaseService {
 	async store(inventoryData) {
 		const inventoryExists = await Inventory.findOne({ where: { name: inventoryData.name }});
-		inventoryData.company_id = inventoryData.company_id
+		const categoryItemExists = await this.findCategory(inventoryData.category_id);
 
         if (inventoryExists) {
 			throw new ExceptionUtils('INVENTORY_ALREADY_EXISTS');
+        }
+
+        if (!categoryItemExists) {
+			throw new ExceptionUtils('INVALID_CATEGORY');
         }
 
         return await Inventory.create(inventoryData);

@@ -26,8 +26,6 @@ export default class CheckoutService extends BaseService {
 
 				totalValue += inventoryItem.value * cartItem.quantity;
 
-				console.log(`total da compra: ${totalValue}`);
-
 				if (userInfo.balance <= totalValue) {
 					throw new ExceptionUtils('INSUFFICIENT_FUNDS');
 				}

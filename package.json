@@ -15,11 +15,7 @@
     "start:dev": "NODE_ENV=development nodemon --delay 500ms --inspect --exec babel-node index.js",
     "lint": "eslint --ext .js ./src",
     "lint:fix": "yarn lint --fix",
-    "test": "NODE_ENV=test mocha --recursive ./src/**/*.spec.js",
-    "test:unit": "NODE_ENV=test mocha ./src/test/unit",
-    "test:integration": "NODE_ENV=test mocha ./src/test/integration",
-    "build:api": "babel ./index.js --out-dir ./build --source-maps && babel ./src --out-dir ./build/src --source-maps",
-    "build:templates": "copy './src/templates/*.html' './build/src/templates'"
+    "test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest --watchAll"
   },
   "dependencies": {
     "axios": "^0.25.0",

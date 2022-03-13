@@ -59,8 +59,6 @@ export default class OrderController extends BaseController {
 
 	async list(req, res) {
 		try {
-			await PermissionUtils.verifyManagerPermission(req.auth);
-
 			if (req.auth.user_role === 'CUSTOMER') {
 				const orders = await this.orderService.listUserOrders({id: req.auth.user_id});
 

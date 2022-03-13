@@ -13,7 +13,7 @@ export default class CompanyController extends BaseController {
 
 	async store(req, res) {
 		try {
-			await PermissionUtils.verifyManagerPermission(req.auth);
+			await PermissionUtils.verifyRootPermission(req.auth);
 
 			const company = await this.companyService.store({
 				...req.data,

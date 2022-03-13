@@ -8,6 +8,7 @@ const schema = {
 			contact_cellphone: yup.string().min(1).transform(sanitizeValue).max(255).required(),
 			email: yup.string().min(1).transform(sanitizeValue).max(255).required(),
 			password: yup.string().min(1).transform(sanitizeValue).max(255).required(),
+			company_id: yup.number(),
 			gender: yup.string().min(1).transform(sanitizeValue).max(255).nullable(),
 			user_type: yup.string().transform(sanitizeValue).max(255)
 				.oneOf(['CUSTOMER', 'STORE_MANAGER', 'APP_OWNER'])
@@ -28,6 +29,7 @@ const schema = {
 			email: yup.string().min(1).transform(sanitizeValue).max(255),
 			password: yup.string().min(1).transform(sanitizeValue).max(255),
 			gender: yup.string().min(1).transform(sanitizeValue).max(255).nullable(),
+			company_id: yup.number(),
 			user_type: yup.string().transform(sanitizeValue).max(255)
 				.oneOf(['CUSTOMER', 'STORE_MANAGER', 'APP_OWNER'])
 		}).noUnknown()
