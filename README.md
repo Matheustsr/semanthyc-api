@@ -11,5 +11,5 @@
 7. Rodar o comando `yarn start:dev` na raiz do projeto
 8. Rode todas as migrations.
 
-Este é o link para a documentação da API:
-Este é o link para a collection no postman:
+Este é o link para a documentação da API:https://documenter.getpostman.com/view/15986286/UVsJvS3Z <br>
+Este é o link para a collection no postman:<br>
