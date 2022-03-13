@@ -12,4 +12,4 @@
 8. Rode todas as migrations.
 
 Este é o link para a documentação da API:https://documenter.getpostman.com/view/15986286/UVsJvS3Z <br>
-Este é o link para a collection no postman:<br>
+Este é o link para a collection no postman:https://www.getpostman.com/collections/0f877402b2c015f0e32c<br>
