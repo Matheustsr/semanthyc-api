@@ -1,4 +1,4 @@
-# SEMANTHYC (API)
+# SEMANTHYC (ecommerce API) 
 
 1. Baixar o projeto: `git clone git@github.com:Matheustsr/semanthyc-api.git`
 2. Rodar `nvm install 16`
